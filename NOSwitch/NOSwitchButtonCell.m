@@ -364,7 +364,9 @@ float clampf(float value, float min_inclusive, float max_inclusive)
     
     CGContextRef cgContext = [context graphicsPort];
     CGSize shadowSize = {0., -2.};
-    NSColor *shadowColor = self.isEnabled ? [NSColor colorWithWhite:0 alpha:1./3.] : [NSColor colorWithWhite:0. alpha:1./6.];
+    NSColor *shadowColor = self.isEnabled ?
+        [NSColor colorWithCalibratedRed:1.0 green:1.0 blue:1.0 alpha:1./3.] :
+        [NSColor colorWithCalibratedRed:1.0 green:1.0 blue:1.0 alpha:1./6.];
     CGContextSetShadowWithColor(cgContext, shadowSize, THUMB_SHADOW_BLUR, shadowColor.CGColor);
     CGContextBeginTransparencyLayer(cgContext, NULL);
     
@@ -415,7 +417,7 @@ float clampf(float value, float min_inclusive, float max_inclusive)
 
 #pragma mark - Tracking
 
-- (NSUInteger)hitTestForEvent:(NSEvent *)event inRect:(NSRect)cellFrame ofView:(NSView *)controlView
+- (NSCellHitResult)hitTestForEvent:(NSEvent *)event inRect:(NSRect)cellFrame ofView:(NSView *)controlView
 {
 	NSPoint mouseLocation = [controlView convertPoint:[event locationInWindow] fromView:nil];
 	return NSPointInRect(mouseLocation, cellFrame) ? (NSCellHitContentArea | NSCellHitTrackableArea) : NSCellHitNone;
@@ -527,7 +529,6 @@ float clampf(float value, float min_inclusive, float max_inclusive)
     }
     
     _backgroundTransitionTimer = [NSTimer scheduledTimerWithTimeInterval:.01 target:self selector:@selector(updateBackgroundTransition:) userInfo:nil repeats:YES];
-    _backgroundTransitionTimer.tolerance = .01;
     [[NSRunLoop currentRunLoop] addTimer:_backgroundTransitionTimer forMode:NSRunLoopCommonModes];
     
     _isBackgroundInTransition = YES;
@@ -588,7 +589,6 @@ float clampf(float value, float min_inclusive, float max_inclusive)
     }
     
     _thumbAnimationTimer = [NSTimer scheduledTimerWithTimeInterval:.01 target:self selector:@selector(updateThumbTransition:) userInfo:nil repeats:YES];
-    _thumbAnimationTimer.tolerance = .01;
     [[NSRunLoop currentRunLoop] addTimer:_thumbAnimationTimer forMode:NSRunLoopCommonModes];
     
     _isThumbAnimating = YES;
