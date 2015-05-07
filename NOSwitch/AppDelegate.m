@@ -28,7 +28,6 @@
     checkboxFrame.size.height *= 2.;
     
     NOSwitchButton *button = [[NOSwitchButton alloc] initWithFrame:checkboxFrame];
-    button.tintColor = [NSColor colorWithCalibratedHue:0.05 saturation:0.86 brightness:0.99 alpha:1];
     [self.window.contentView addSubview:button];
 }
 
