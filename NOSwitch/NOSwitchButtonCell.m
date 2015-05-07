@@ -175,7 +175,7 @@ float clampf(float value, float min_inclusive, float max_inclusive)
     if (self.controlView && [self.controlView isKindOfClass:[NOSwitchButton class]]) {
         self.tintColor = [(NOSwitchButton *)self.controlView tintColor];
     } else {
-        self.tintColor = [NSColor colorWithCalibratedRed:76./255. green:217./255. blue:100./255. alpha:1.];
+        self.tintColor = [NSColor colorWithCalibratedRed:61./255. green:155./255. blue:250./255. alpha:1.];
     }
     
     [self setBackgroundStateForCellState:self.state];
